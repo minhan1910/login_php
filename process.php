@@ -15,8 +15,7 @@
             <?php
                 require_once 'function.php';
                 session_start();
-                echo $_SESSION['flagPermisson'];
-                if($_SESSION['flagPermisson'] == true) {
+                if(isset($_SESSION['flagPermisson'])) {
                     //ton tai trong 20s xong tu out
                     if($_SESSION['timeOut'] + 20 > time()) {
                         echo '<h3>Hello: '.$_SESSION['fullName'].'</h3>';
@@ -30,18 +29,6 @@
                         $data = parse_ini_file("user.ini");
                         $username = $_POST['username'];
                         $password = md5($_POST['password']);
-                        //cach nay cham doi lai thanh file ini
-    //                    $result = array();
-    //                    foreach($data as $value) {
-    //                        $username = $_POST['username'];
-    //                        $password = $_POST['password'];
-    //                        $value    = explode("|", $value);
-    //
-    //                       if($value[0] == $username) {
-    //                         $result = $value;  
-    //                         break;
-    //                       }
-    //                    }
                         $userInfo = explode("|", $data[$username]);
                         if($userInfo[0] == $username &&
                            $userInfo[1] == $password) {
@@ -53,7 +40,6 @@
                         } else {
                             header('Location: login.php');
                         }
-
                     } else {
                         header('Location: login.php');
                     }

@@ -1,3 +1,9 @@
+<?php 
+     session_start();
+//     if(!isset($_SESSION['flagPermisson'])) {
+//         header("Location: login.php");
+//     }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +18,7 @@
     <div class="content">
         <h1>Login</h1>
         <?php
-            session_start();
-            if($_SESSION['flagPermisson'] == true
-               && isset($_SESSION['flagPermisson'])
+            if( isset($_SESSION['flagPermisson'])
                && count($_SESSION) != 0) {
                 if($_SESSION['timeOut'] + 20 > time()) {
                         echo '<h3>Hello: '.$_SESSION['fullName'].'</h3>';
